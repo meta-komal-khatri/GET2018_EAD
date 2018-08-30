@@ -55,6 +55,6 @@ public class Update extends HttpServlet{
 			RequestDispatcher rd=req.getRequestDispatcher("Update");  
 			rd.include(req, resp);
 		}
-		
+	
 	}
 }
