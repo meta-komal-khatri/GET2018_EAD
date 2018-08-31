@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Add Employee Servlet</display-name>
+    
+    
+    <servlet>
+   	 <display-name>Add Employee Servlet</display-name>
+   	 <servlet-name>EmployeeDetails</servlet-name>
+   	 <servlet-class>com.metacube.servlets.AddEmployee</servlet-class>
+    </servlet>
+    
+      <servlet-mapping>
+   	 <servlet-name>EmployeeDetails</servlet-name>
+   	 <url-pattern>/AddEmployee</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    	<display-name>Add Employee Servlet</display-name>
+    	<servlet-name>ShowEmployee</servlet-name>
+    	<servlet-class>com.metacube.servlets.ShowEmployes</servlet-class>
+    </servlet>
+        
+    <servlet-mapping>
+    	<servlet-name>ShowEmployee</servlet-name>
+    	<url-pattern>/ShowEmployes</url-pattern>
+    </servlet-mapping> 
+    
+    <servlet>
+    	<display-name>Search Employee Servlet</display-name>
+    	<servlet-name>SearchEmployee</servlet-name>
+    	<servlet-class>com.metacube.servlets.SearchEmployee</servlet-class>
+    </servlet>
+     <servlet-mapping>
+    	<servlet-name>SearchEmployee</servlet-name>
+    	<url-pattern>/SearchEmployee</url-pattern>
+    </servlet-mapping> 
+    <servlet>
+    	<servlet-name>Update Employee</servlet-name>
+    	<servlet-class>com.metacube.servlets.Update</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>Update Employee</servlet-name>
+    	<url-pattern>/Update</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    	<servlet-name>Update Employee Details</servlet-name>
+    	<servlet-class>com.metacube.servlets.UpdateEmployeeDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>Update Employee Details</servlet-name>
+    	<url-pattern>/UpdateEmployeeDetails</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+   	 <welcome-file>AddEmployeeForm.html</welcome-file>
+    </welcome-file-list>
+</web-app>
