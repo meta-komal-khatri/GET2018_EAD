@@ -5,6 +5,7 @@ import java.sql.Date;
 
 
 
+
 public class User extends BaseEntity{
 	private String firstName;
 	private String lastName;
@@ -146,6 +147,6 @@ public class User extends BaseEntity{
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+
 	}
-	
 }
