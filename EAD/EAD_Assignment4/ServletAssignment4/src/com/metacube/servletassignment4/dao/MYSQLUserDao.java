@@ -1,5 +1,7 @@
 package com.metacube.servletassignment4.dao;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,10 +45,11 @@ public class MYSQLUserDao implements UserDao{
 			if(resultSet.next()){
 				
 				while(resultSet.next()){
-				
+					Blob imageBlob=resultSet.getBlob("image");
+					InputStream image = imageBlob.getBinaryStream();
 					user=new User(resultSet.getString("first_name"),resultSet.getString("last_name"),resultSet.getInt("age"),
 							resultSet.getDate("date_of_birth"),resultSet.getInt("mob_no"),resultSet.getString("password"),resultSet.getString("email")
-							,resultSet.getString("organization"),resultSet.getBlob("image"));
+							,resultSet.getString("organization"),image);
 					
 					userList.add(user);
 				}
