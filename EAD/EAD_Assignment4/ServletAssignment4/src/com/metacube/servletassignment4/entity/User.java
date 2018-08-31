@@ -5,16 +5,40 @@ import java.sql.Date;
 
 
 
-public class User {
+public class User extends BaseEntity{
 	private String firstName;
 	private String lastName;
 	private int age;
 	private Date dateOfBirth;
 	private int mobileNumber;
 	private String password;
+	private String email;
 	private String organization;
 	private Blob image;
 	
+
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param age
+	 * @param dateOfBirth
+	 * @param mobileNumber
+	 * @param password
+	 * @param organization
+	 * @param image
+	 */
+	public User(String firstName, String lastName, int age, Date dateOfBirth,
+			int mobileNumber, String password,String email, String organization, Blob image) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.dateOfBirth = dateOfBirth;
+		this.mobileNumber = mobileNumber;
+		this.password = password;
+		this.setEmail(email);
+		this.organization = organization;
+		this.image = image;
+	}
 	/**
 	 * @return the firstName
 	 */
@@ -110,6 +134,18 @@ public class User {
 	 */
 	public void setImage(Blob image) {
 		this.image = image;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
