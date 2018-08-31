@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionHelper {
 	public static Connection getConnection(){ 
-		java.sql.Connection conn=null;
+		Connection conn=null;
 		String DB_URL = "jdbc:mysql://localhost/employeedetails";
 		
 		try {

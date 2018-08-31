@@ -43,6 +43,13 @@ public class EmployeeDao {
 		catch(SQLException ex){
 			throw new AssertionError();
 		}
+		finally{
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				throw new AssertionError("Error while closing resultset");
+			}
+		}
 		return employeeList;
 	}
 
@@ -64,6 +71,13 @@ public class EmployeeDao {
 		catch(SQLException ex){
 			throw new AssertionError();
 		}
+		finally{
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				throw new AssertionError();
+			}
+		}
 		return employeeList;
 
 	}
@@ -83,6 +97,13 @@ public class EmployeeDao {
 		}
 		catch(SQLException ex){
 			System.out.println(ex.getMessage());
+		}
+		finally{
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				throw new AssertionError();
+			}
 		}
 		return employee;
 	}
