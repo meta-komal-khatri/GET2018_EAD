@@ -1,5 +1,6 @@
 package com.metacube.servletassignment4.entity;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
 
@@ -15,7 +16,7 @@ public class User extends BaseEntity{
 	private String password;
 	private String email;
 	private String organization;
-	private Blob image;
+	private InputStream image;
 	
 
 	/**
@@ -29,7 +30,7 @@ public class User extends BaseEntity{
 	 * @param image
 	 */
 	public User(String firstName, String lastName, int age, Date dateOfBirth,
-			int mobileNumber, String password,String email, String organization, Blob image) {
+			int mobileNumber, String password,String email, String organization, InputStream image) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -127,13 +128,13 @@ public class User extends BaseEntity{
 	/**
 	 * @return the image
 	 */
-	public Blob getImage() {
+	public InputStream getImage() {
 		return image;
 	}
 	/**
 	 * @param image the image to set
 	 */
-	public void setImage(Blob image) {
+	public void setImage(InputStream image) {
 		this.image = image;
 	}
 	/**
