@@ -45,6 +45,7 @@ public class MYSQLUserDao implements UserDao{
 			if(resultSet.next()){
 				
 				while(resultSet.next()){
+					
 					Blob imageBlob=resultSet.getBlob("image");
 					InputStream image = imageBlob.getBinaryStream();
 					user=new User(resultSet.getString("first_name"),resultSet.getString("last_name"),resultSet.getInt("age"),
@@ -57,21 +58,9 @@ public class MYSQLUserDao implements UserDao{
 		}
 		
 		catch (SQLException e) {
-			throw new AssertionError();
+			System.out.println(e.getMessage());
 		}
 		
-		finally{
-			
-			try {
-			
-				resultSet.close();
-			}
-			
-			catch (SQLException e) {
-			
-				throw new AssertionError();
-			}
-		}
 		return userList;
 	}
 
@@ -82,7 +71,7 @@ public class MYSQLUserDao implements UserDao{
 		
 		try(Connection conn=ConnectionHelper.getConnection();
 			 PreparedStatement preparedStatement=conn.prepareStatement(query);){
-		
+			System.out.println(newUser.getOrganization());
 			preparedStatement.setString(1, newUser.getFirstName());
 			preparedStatement.setString(2,newUser.getLastName());
 			preparedStatement.setInt(3, newUser.getAge());
@@ -98,11 +87,41 @@ public class MYSQLUserDao implements UserDao{
 		
 		 catch (SQLException e) {
 		
-			 throw new AssertionError();
+			 System.out.println(e.getMessage());
 		} 
 		
 	}
-
+	
+	public User getUserByEmailAndPassword(String email,String password){
+		String query=Query.LOGIN_USER;
+		ResultSet resultSet=null;
+		User user=null;
+		try(Connection conn=ConnectionHelper.getConnection();
+				PreparedStatement preparedStatement=conn.prepareStatement(query);){
+			
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()){
+				while(resultSet.next()){
+					
+					Blob imageBlob=resultSet.getBlob("image");
+					InputStream image = imageBlob.getBinaryStream();
+					
+					user=new User(resultSet.getString("first_name"),resultSet.getString("last_name"),resultSet.getInt("age"),
+							resultSet.getDate("date_of_birth"),resultSet.getInt("mob_no"),resultSet.getString("password"),resultSet.getString("email")
+							,resultSet.getString("organization"),image);
+				}
+			}
+			
+			
+			
+		} catch (SQLException | AssertionError e) {
+			
+			System.out.println(e.getMessage());
+		}
+		return user;
+	}
 	@Override
 	public void update(User t) {
 		// TODO Auto-generated method stub

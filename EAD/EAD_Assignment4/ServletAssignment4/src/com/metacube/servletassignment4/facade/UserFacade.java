@@ -18,13 +18,26 @@ public class UserFacade {
     }
     public Status registerUser(User user){
     	List<User> userList=userDao.getAll();
+    	
     	for(User users:userList){
     		if(users.getEmail().equals(user.getEmail())){
+    			System.out.println(users.getEmail());
     			return Status.DUPLICATED;
     		}
     	}
     	userDao.create(user);
     	return Status.CREATED;
+    }
+    
+    
+    public Status logInUser(String email,String password){
+    	User user=userDao.getUserByEmailAndPassword(email, password);
+    	if(user!=null){
+    		return Status.SUCCESS;
+    	}
+    	else{
+    		return Status.FAILED;
+    	}
     }
 
 }
