@@ -1,5 +1,6 @@
 package com.metacube.servletassignment4.facade;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.metacube.servletassignment4.dao.MYSQLUserDao;
@@ -32,12 +33,29 @@ public class UserFacade {
     
     public Status logInUser(String email,String password){
     	User user=userDao.getUserByEmailAndPassword(email, password);
+  
     	if(user!=null){
     		return Status.SUCCESS;
     	}
     	else{
+    		System.out.println("user");
     		return Status.FAILED;
     	}
+    }
+    
+    public User userName(String email){
+    	User user=userDao.getUserByEmail(email);
+    	//String name=user.getFirstName();
+    	return user;
+    }
+    
+    public Status updateUSer(String fistName,String lastName,Date dateOfBirth,int mobileNo,String email){
+    	userDao.updateUSer(fistName, lastName, dateOfBirth,mobileNo ,email);
+    	return Status.UPDATED;
+    }
+    public List<User> getUserByOrganization(String organization,String email){
+    	List<User> userList=userDao.getUserByOrganization(organization,email);
+    	return userList;
     }
 
 }

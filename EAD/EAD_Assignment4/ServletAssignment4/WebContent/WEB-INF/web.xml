@@ -21,6 +21,44 @@
    	 <servlet-name>LogInServlet</servlet-name>
    	 <url-pattern>/LogInServlet</url-pattern>
     </servlet-mapping>
+     <servlet>
+   	 <display-name>myservlet</display-name>
+   	 <servlet-name>LogOutServlet</servlet-name>
+   	 <servlet-class>com.metacube.servletassignment4.controller.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   	 <servlet-name>LogOutServlet</servlet-name>
+   	 <url-pattern>/LogOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+   	 <display-name>myservlet</display-name>
+   	 <servlet-name>ProfileServlet</servlet-name>
+   	 <servlet-class>com.metacube.servletassignment4.controller.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   	 <servlet-name>ProfileServlet</servlet-name>
+   	 <url-pattern>/ProfileServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+   	 <display-name>myservlet</display-name>
+   	 <servlet-name>UpdateServlet</servlet-name>
+   	 <servlet-class>com.metacube.servletassignment4.controller.UpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   	 <servlet-name>UpdateServlet</servlet-name>
+   	 <url-pattern>/UpdateServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+   	 <display-name>myservlet</display-name>
+   	 <servlet-name>FriendServlet</servlet-name>
+   	 <servlet-class>com.metacube.servletassignment4.controller.FriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   	 <servlet-name>FriendServlet</servlet-name>
+   	 <url-pattern>/FriendServlet</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
    	 <welcome-file>user_registration.html</welcome-file>
     </welcome-file-list>

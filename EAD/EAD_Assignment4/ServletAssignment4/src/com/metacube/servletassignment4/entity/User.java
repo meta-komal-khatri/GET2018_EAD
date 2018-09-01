@@ -16,7 +16,7 @@ public class User extends BaseEntity{
 	private String password;
 	private String email;
 	private String organization;
-	private InputStream image;
+	private byte[] image;
 	
 
 	/**
@@ -30,7 +30,7 @@ public class User extends BaseEntity{
 	 * @param image
 	 */
 	public User(String firstName, String lastName, int age, Date dateOfBirth,
-			int mobileNumber, String password,String email, String organization, InputStream image) {
+			int mobileNumber, String password,String email, String organization, byte[] image) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -39,7 +39,7 @@ public class User extends BaseEntity{
 		this.password = password;
 		this.setEmail(email);
 		this.organization = organization;
-		this.image = image;
+		this.setImage(image);
 	}
 	/**
 	 * @return the firstName
@@ -125,21 +125,7 @@ public class User extends BaseEntity{
 	public void setOrganization(String organization) {
 		this.organization = organization;
 	}
-	/**
-	 * @return the image
-	 */
-	public InputStream getImage() {
-		return image;
-	}
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(InputStream image) {
-		this.image = image;
-	}
-	/**
-	 * @return the email
-	 */
+
 	public String getEmail() {
 		return email;
 	}
@@ -149,5 +135,17 @@ public class User extends BaseEntity{
 	public void setEmail(String email) {
 		this.email = email;
 
+	}
+	/**
+	 * @return the image
+	 */
+	public byte[] getImage() {
+		return image;
+	}
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 }
