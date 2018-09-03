@@ -97,18 +97,36 @@ public class MYSQLAdvertisementDao implements AdvertisementDao{
 
 
 	@Override
-	public void updateName(String name, int id) {
+	public int updateName(String name, int id) {
 		String query=Query.UPDATE_NAME;
+		int updatedRows=0;
 		try(Connection conn=ConnectionHelper.getConnection();
 				PreparedStatement preparedStatement=conn.prepareStatement(query);){
 			preparedStatement.setString(1,name);
 			preparedStatement.setInt(2, id);
-			preparedStatement.executeUpdate();
+			updatedRows=preparedStatement.executeUpdate();
 		} catch (SQLException | AssertionError e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return updatedRows;
 		
+	}
+
+
+	@Override
+	public int deleteById(int id) {
+		String query=Query.DELETE_ADVERTISEMENT_BY_ID;
+		int deletedRows=0;
+		try(Connection conn=ConnectionHelper.getConnection();
+				PreparedStatement preparedStatement=conn.prepareStatement(query);){
+			preparedStatement.setInt(1, id);
+			deletedRows=preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return deletedRows;
 	}
 	
 
