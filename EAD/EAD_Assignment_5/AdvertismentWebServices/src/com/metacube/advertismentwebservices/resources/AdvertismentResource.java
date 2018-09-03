@@ -23,6 +23,16 @@ import com.metacube.advertismentwebservices.facade.AdvertisementFacade;
 public class AdvertismentResource {
 	AdvertisementFacade advertismentFacade=AdvertisementFacade.getInstance();
 
+	
+	@POST
+	@Path("/InsertAdvertisement")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String insertAdvertisement(Object advertisement){
+		System.out.println(advertisement);
+		return null;
+		
+	}
 
 	@GET
 	@Path("/GetAdvertisment")

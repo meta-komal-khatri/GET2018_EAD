@@ -1,11 +1,23 @@
 package com.metacube.advertismentwebservices.entity;
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 
 public class Advertisement extends BaseEntity {
-	
+	@JsonbProperty("name")
 	private String title;
+	@JsonbProperty("description")
 	private String description;
+	@JsonbProperty("category_id")
 	private int category_id;
 	
+	@JsonbCreator
+	public Advertisement(@JsonbProperty("name") String name, @JsonbProperty("description") String description,
+			@JsonbProperty("category_id") int category_id){
+		this.title=name;
+		this.description=description;
+		this.category_id=category_id;
+	}
 	/**
 	 * @return the title
 	 */
@@ -47,5 +59,10 @@ public class Advertisement extends BaseEntity {
 	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
 	}
+	
+	 @Override
+	    public String toString() {
+	      return title + " wrote " + description + " albums";
+	    }
 	
 }
