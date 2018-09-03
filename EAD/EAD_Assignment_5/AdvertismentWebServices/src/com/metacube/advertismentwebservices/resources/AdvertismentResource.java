@@ -28,9 +28,17 @@ public class AdvertismentResource {
 	@Path("/InsertAdvertisement")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String insertAdvertisement(Object advertisement){
-		System.out.println(advertisement);
-		return null;
+	public Response insertAdvertisement(Advertisement advertisement){
+		if(advertisement==null){
+			return Response.serverError().entity("input cannot be blank").build();
+		}
+		if(advertismentFacade.insertNewAdvertisement(advertisement).equals(Status.INSERTED)){
+			return Response.ok("Inserted Successfully", MediaType.APPLICATION_JSON).build();
+
+		}
+		else{
+			return Response.status(Response.Status.BAD_REQUEST).entity("Entity not found ").build();
+		}
 		
 	}
 
@@ -69,7 +77,7 @@ public class AdvertismentResource {
 
 	}
 
-	@GET
+	@PUT
 	@Path("/UpdateAdvertisement/{id}/{title}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response updateAdvertisementName(@PathParam("id")String id,@PathParam("title") String title){

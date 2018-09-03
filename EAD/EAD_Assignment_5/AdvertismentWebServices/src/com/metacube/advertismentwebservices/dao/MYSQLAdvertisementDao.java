@@ -50,8 +50,20 @@ public class MYSQLAdvertisementDao implements AdvertisementDao{
 	}
 
 	@Override
-	public void create(Advertisement entity) {
-		// TODO Auto-generated method stub
+	public int create(Advertisement entity) {
+		String query=Query.INSERT_NEW_ADVERTISEMENT;
+		int insertedRows=0;
+		try(Connection conn=ConnectionHelper.getConnection();
+				PreparedStatement preparedStatement=conn.prepareStatement(query);){
+			preparedStatement.setString(1,entity.getTitle());
+			preparedStatement.setString(2, entity.getDescription());
+			preparedStatement.setInt(3,entity.getCategory_id());
+			insertedRows=preparedStatement.executeUpdate();
+		} catch (SQLException | AssertionError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return insertedRows;
 		
 	}
 
@@ -121,6 +133,7 @@ public class MYSQLAdvertisementDao implements AdvertisementDao{
 		try(Connection conn=ConnectionHelper.getConnection();
 				PreparedStatement preparedStatement=conn.prepareStatement(query);){
 			preparedStatement.setInt(1, id);
+			System.out.println(deletedRows);
 			deletedRows=preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

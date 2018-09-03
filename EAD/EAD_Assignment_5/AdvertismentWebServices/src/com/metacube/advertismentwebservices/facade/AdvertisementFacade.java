@@ -43,4 +43,12 @@ public class AdvertisementFacade {
 			return Status.FAILED;
 		}
 	}
+	public Status insertNewAdvertisement(Advertisement advertisement){
+		if(advertisementDao.create(advertisement)>0){
+			return Status.INSERTED;
+		}
+		else{
+			return Status.FAILED;
+		}
+	}
 }

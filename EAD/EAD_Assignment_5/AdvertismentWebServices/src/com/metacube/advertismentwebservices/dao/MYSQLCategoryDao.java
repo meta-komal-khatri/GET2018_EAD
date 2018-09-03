@@ -44,8 +44,8 @@ public class MYSQLCategoryDao implements CategoryDao {
 	}
 
 	@Override
-	public void create(Category entity) {
-		// TODO Auto-generated method stub
+	public int create(Category entity) {
+		return 0;
 
 	}
 

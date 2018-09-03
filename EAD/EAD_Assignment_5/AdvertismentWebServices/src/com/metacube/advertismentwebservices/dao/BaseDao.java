@@ -6,7 +6,7 @@ public interface BaseDao<Object> {
 
     public List<Object> getAll();
 
-    public void create(Object entity);
+    public int create(Object entity);
     
     public void update(Object t);
 

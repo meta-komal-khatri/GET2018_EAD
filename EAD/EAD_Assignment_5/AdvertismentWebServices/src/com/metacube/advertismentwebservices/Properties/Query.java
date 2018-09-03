@@ -8,4 +8,5 @@ public class Query {
 	public static final String UPDATE_NAME="UPDATE advertisement SET title=? WHERE id=?";
 	public static final String UPDATE_CATEGORY_NAME="UPDATE category SET name=? WHERE id=?";
 	public static final String DELETE_ADVERTISEMENT_BY_ID="DELETE FROM advertisement WHERE id=?";
+	public static final String INSERT_NEW_ADVERTISEMENT="INSERT INTO advertisement (title,description,category_id) VALUES(?,?,?)";
 }
