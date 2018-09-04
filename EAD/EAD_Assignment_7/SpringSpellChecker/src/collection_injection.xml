@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="collectionInjection" class="com.metacube.training.CollectionInjection">
+		<property name="spellChecking">
+			<list>
+				<ref bean="spellChecking1"></ref>
+				<ref bean="spellChecking2"></ref>
+				<ref bean="spellChecking3"></ref>
+			</list>
+		</property>
+		<property name="spellCheckingSet">
+			<set>
+				<ref bean="spellChecking1"></ref>
+				<ref bean="spellChecking2"></ref>
+				<ref bean="spellChecking3"></ref>
+			</set>
+		</property>
+		<property name="spellCheckingMap">
+			<map>
+				<entry key="1" value-ref="spellChecking1" ></entry>
+				<entry key="2" value-ref="spellChecking2" ></entry>
+				<entry key="3" value-ref="spellChecking3" ></entry>
+			</map>	
+		</property>
+	</bean>
+	<bean id="spellChecking1" class="com.metacube.training.SpellChecker">
+		<property name="spellChecking" value="First SpellChecking"></property>
+	</bean>
+	<bean id="spellChecking2" class="com.metacube.training.SpellChecker">
+		<property name="spellChecking" value="Second SpellChecking"></property>
+	</bean>
+	<bean id="spellChecking3" class="com.metacube.training.SpellChecker">
+		<property name="spellChecking" value="Third SpellChecking"></property>
+	</bean>
+	
+</beans>
