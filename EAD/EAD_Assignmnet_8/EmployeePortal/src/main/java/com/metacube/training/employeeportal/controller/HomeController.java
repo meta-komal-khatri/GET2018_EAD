@@ -1,4 +1,4 @@
-package com.metacube.training.EmployeePortal.controller;
+package com.metacube.training.employeeportal.controller;
 
 import java.io.IOException;
 

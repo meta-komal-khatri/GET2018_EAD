@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	Welcome ${username}
 	<table>
 		<tr>
-			<a href="addproject">Add Project Master</a>
-			<a href="addskill">Add Skill Master</a>
-			<a href="">Add Job Title</a>
+			<a th:href="@{project/add}">Add Project Master</a>
+			<a href="@{addskill}">Add Skill Master</a>
+			<a href="@{addjob}">Add Job Title</a>
 			<a href="">Add Employee Master</a>
 			<a href="">Search Employee</a>
 			<a href="">LogOut</a>
