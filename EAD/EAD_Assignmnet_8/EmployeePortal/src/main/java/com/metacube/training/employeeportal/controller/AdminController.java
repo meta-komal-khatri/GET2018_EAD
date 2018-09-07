@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metacube.training.employeeportal.model.Employee;
+import com.metacube.training.employeeportal.model.Job;
 import com.metacube.training.employeeportal.model.Projects;
 import com.metacube.training.employeeportal.model.Skill;
+import com.metacube.training.employeeportal.service.EmployeeService;
+import com.metacube.training.employeeportal.service.JobService;
 import com.metacube.training.employeeportal.service.ProjectService;
 import com.metacube.training.employeeportal.service.SkillService;
 
@@ -23,6 +27,12 @@ public class AdminController {
 	
 	@Autowired
 	SkillService skillService;
+	
+	@Autowired
+	JobService jobService;
+	
+	@Autowired
+	EmployeeService employeeService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	 public ModelAndView login(){
@@ -80,7 +90,7 @@ public class AdminController {
 		return "admin/addskill";
 	}
 	
-	@RequestMapping(value="/skills" , method=RequestMethod.POST)
+	@RequestMapping(value = "/skills" , method=RequestMethod.POST)
 	public String addSkills(@ModelAttribute("skill") Skill skill,Model model){
 		
 		if(skill!= null && skill.getId() == 0) {
@@ -98,8 +108,58 @@ public class AdminController {
 	}
 	
 	
+	/******************job title***************/
+	
+	@RequestMapping(value="job/add", method=RequestMethod.GET)
+	public String addJobTitle(Model model){
+		model.addAttribute("job",new Job());
+		return "admin/addjob";
+	}
+	
+	@RequestMapping(value="jobs",method=RequestMethod.POST)
+	public String addJob(Model model,@ModelAttribute("job") Job job){
+		if(job!=null && job.getId()==0){
+			jobService.create(job);
+		}
+		return "redirect:/admin/jobs";
+	}
+	
+	@RequestMapping(value="/jobs",method=RequestMethod.GET)
+	public String getAllJobs(Model model){
+		model.addAttribute("job",jobService.getAll());
+		return "admin/jobs";
+	}
 	
 	
+	/*******************Employee*****************/
+	
+	@RequestMapping(value="employee/add",method= RequestMethod.GET)
+	public String addEmployee(Model model){
+		model.addAttribute("employee",new Employee());
+		return "admin/addemployee";
+	}
+	
+	
+	@RequestMapping(value="/employes",method=RequestMethod.POST)
+	public String addEmployee(@ModelAttribute("employee") Employee employee,Model model){
+		if(employee!=null){
+			employeeService.createEmployee(employee);
+		}
+		return "redirect:/admin/employes";
+	}
+	
+	
+	@RequestMapping(value="employes",method=RequestMethod.GET)
+	public String showAllemployes(Model model){
+		model.addAttribute("employee", employeeService.getAll());
+		return "admin/employes";
+	}
+	
+	@RequestMapping(value="employee/edit",method=RequestMethod.GET)
+	public String editEmployee(@RequestParam("employee_code") String employeeCode,Model model){
+		employeeService.getEmployeeByEmployeeCode(employeeCode);
+		return "";
+	}
 	/*@RequestMapping(value="/addskill" , method = RequestMethod.GET)
 	public ModelAndView addSkill1(){
 		return new ModelAndView("admin/addskill");

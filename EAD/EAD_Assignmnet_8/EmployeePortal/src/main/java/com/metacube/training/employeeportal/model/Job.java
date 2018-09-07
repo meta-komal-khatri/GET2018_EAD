@@ -2,7 +2,7 @@ package com.metacube.training.employeeportal.model;
 
 public class Job {
 	private int id;
-	private String name;
+	private String title;
 	/**
 	 * @return the id
 	 */
@@ -18,13 +18,13 @@ public class Job {
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

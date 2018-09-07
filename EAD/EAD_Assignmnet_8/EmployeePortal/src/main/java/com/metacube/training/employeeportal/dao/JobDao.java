@@ -1,5 +1,7 @@
 package com.metacube.training.employeeportal.dao;
 
-public class JobDao {
+import com.metacube.training.employeeportal.model.Job;
+
+public interface JobDao extends BaseDao<Job>  {
 
 }
