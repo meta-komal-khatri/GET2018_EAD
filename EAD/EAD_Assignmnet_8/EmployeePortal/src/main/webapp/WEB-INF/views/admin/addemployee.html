@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${employee}" action="@{employee/add}" method="post">
+		<table> 
+			<tr>
+				<td>Employee Code</td>
+				<td><input type="text" th:field="*{employeeCode}">
+			</tr>
+			<tr>
+				<td>
+					First Name
+				</td>
+				<td>
+					<input type="text" th:field="*{firstName}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Middle Name
+				</td>
+				<td>
+					<input type="text" th:field="*{middle_name}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Date Of Birth
+				</td>
+				<td>
+					<input type="text" th:field="dob">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Gender
+				</td>
+				<td>
+					<input type="radio" name="dob">
+				</td>
+			</tr>
+		</table>
+		
+	</form>
+	
+	
+	
+	<ul>
+  <li th:each="radioValue: ${singleSelectAllValues}">
+    <input type="radio" 
+        th:field="*{radioButtonSelectedValue}"
+        th:value="${radioValue}" />
+    <label 
+        th:for="${#ids.prev('radioButtonSelectedValue')}"
+        th:text="${radioValue}"></label>
+  </li>
+</ul>

@@ -25,13 +25,22 @@ public class ProjectServiceImp implements ProjectService{
 
 	@Override
 	public boolean updateProject(Projects project) {
-		// TODO Auto-generated method stub
-		return false;
+		return projectDAO.update(project);
 	}
 
 	@Override
 	public List<Projects> getAllProjects() {
 		return projectDAO.getAll();
+	}
+	
+	@Override
+	public Projects getProjectById(int id) {
+		return projectDAO.getProjectById(id);
+	}
+
+	@Override
+	public boolean deleteProjectById(int id) {
+		return projectDAO.deleteProjectById(id);
 	}
 	
 }

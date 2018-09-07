@@ -37,15 +37,27 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 	}
 
 	@Override
-	public void update(Projects t) {
-		// TODO Auto-generated method stub
+	public boolean update(Projects project) {
+		return jdbcTemplate.update(Query.SQL_UPDATE_PROJECT,project.getDescription(),project.getStartDate(),project.getEndDate(),project.getId())>0;
 		
 	}
 
 	@Override
-	public void delete(Projects t) {
-		// TODO Auto-generated method stub
+	public boolean delete(Projects t) {
+		return false;
 		
+	}
+
+
+	@Override
+	public Projects getProjectById(int id) {
+		return (Projects) jdbcTemplate.queryForObject(Query.SQL_FIND_PROJECT,new Object[]{id},new ProjectMapper());
+	}
+
+
+	@Override
+	public boolean deleteProjectById(int id) {
+		return jdbcTemplate.update(Query.SQL_DELETE_PROJECT,new Object[]{id})>0;
 	}
 
 }

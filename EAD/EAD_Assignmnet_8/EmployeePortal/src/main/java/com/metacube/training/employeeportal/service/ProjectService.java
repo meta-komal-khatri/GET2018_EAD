@@ -11,4 +11,7 @@ public interface ProjectService {
 	boolean updateProject(Projects project);
 
 	List<Projects> getAllProjects();
+	
+	Projects getProjectById(int id);
+	boolean deleteProjectById(int id);
 }

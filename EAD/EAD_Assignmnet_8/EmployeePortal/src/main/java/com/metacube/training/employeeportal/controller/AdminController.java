@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metacube.training.employeeportal.model.Projects;
+import com.metacube.training.employeeportal.model.Skill;
 import com.metacube.training.employeeportal.service.ProjectService;
+import com.metacube.training.employeeportal.service.SkillService;
 
 
 @Controller
@@ -18,6 +20,9 @@ import com.metacube.training.employeeportal.service.ProjectService;
 public class AdminController {
 	@Autowired
 	ProjectService projectService;
+	
+	@Autowired
+	SkillService skillService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	 public ModelAndView login(){
@@ -30,17 +35,15 @@ public class AdminController {
 		return new ModelAndView("admin/dashboard","username",username);
 	}
 	
-	
+	/*Project*/
 	@RequestMapping(value="/project/add" , method = RequestMethod.GET)
 	public ModelAndView addProject(Model model){
-		System.out.println("ajksdh");
 		model.addAttribute("project",new Projects());
 		return new ModelAndView("admin/addproject");
 	}
 	
-	@RequestMapping(path = "projects", method = RequestMethod.POST)
+	@RequestMapping(value = "projects", method = RequestMethod.POST)
 	public String saveproject(@ModelAttribute("project") Projects project) {
-		System.out.println("nsjsd");
 		if(project!= null && project.getId() == 0) {
 			projectService.createProject(project);	
 		}else {
@@ -49,19 +52,50 @@ public class AdminController {
 		return "redirect:/admin/projects";
 	}
 	
-	@RequestMapping(path = "/projects", method = RequestMethod.GET)
+	@RequestMapping(value = "/projects", method = RequestMethod.GET)
 	public String getAllprojects(Model model) {
 		model.addAttribute("projects", projectService.getAllProjects());
 		return "admin/projects";
 	}
 	
-	@RequestMapping(path="/projects/edit",method=RequestMethod.GET)
-	public String editProject(@RequestParam("id") int id,Model model){
-		model.addAttribute("projects", new Projects());
-		return "sjd";
+	@RequestMapping(value="/projects/edit",method=RequestMethod.GET)
+	public ModelAndView editProject(@RequestParam("id") int id,Model model){
+		Projects project=projectService.getProjectById(id);
+		model.addAttribute("project", project);
+		return new ModelAndView("admin/addproject");
 	}
 	
+	@RequestMapping(value="/projects/delete",method=RequestMethod.GET)
+		public String deleteProject(@RequestParam("id") int id,Model model){
+			projectService.deleteProjectById(id);
+			return "redirect:/admin/projects";
+		}
 	
+	
+	/*Skill*/
+	
+	@RequestMapping(value = "/skill/add" ,method=RequestMethod.GET)
+	public String addSkills(Model model){
+		model.addAttribute("skill",new Skill());
+		return "admin/addskill";
+	}
+	
+	@RequestMapping(value="/skills" , method=RequestMethod.POST)
+	public String addSkills(@ModelAttribute("skill") Skill skill,Model model){
+		
+		if(skill!= null && skill.getId() == 0) {
+			skillService.create(skill);	
+		}else {
+			skillService.update(skill);
+		}
+		return "redirect:/admin/skills";
+	}
+	
+	@RequestMapping(value="/skills", method = RequestMethod.GET)
+	public String getAllSkills(Model model) {
+		model.addAttribute("skill", skillService.getAll());
+		return "admin/skills";
+	}
 	
 	
 	

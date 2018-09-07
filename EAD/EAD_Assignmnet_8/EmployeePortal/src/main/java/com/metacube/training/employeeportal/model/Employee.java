@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Employee {
-	private int employeeCode;
+	private String employeeCode;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -18,13 +18,13 @@ public class Employee {
 	/**
 	 * @return the employeeCode
 	 */
-	public int getEmployeeCode() {
+	public String getEmployeeCode() {
 		return employeeCode;
 	}
 	/**
 	 * @param employeeCode the employeeCode to set
 	 */
-	public void setEmployeeCode(int employeeCode) {
+	public void setEmployeeCode(String employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 	/**
