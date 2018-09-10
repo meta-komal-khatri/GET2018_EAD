@@ -19,10 +19,12 @@ public interface Query {
 	
 	
 	static final String SQL_INSERT_EMPLOYEE="insert into employee (employee_code,first_name,\n"
-			+ "middle_name,last_name,dob,gender,contact_no,email_id)\n"
-			                        + "values(?,?,?,?,?,?,?,?)";
+			+ "middle_name,last_name,dob,gender,contact_no,email_id,password)\n"
+			                        + "values(?,?,?,?,?,?,?,?,?)";
 	static final String SQL_SELECT_EMPLOYEE="select * from employee";
 	static final String SQL_UPDATE_EMPLOYEE="update employee set first_name=?,middle_name=?,last_name=?,dob=?,gender=?,contact_no=?,email_id=? where employee_code=?";
 	static final String SQL_UPDATE_EMPLOYEE_STATUS="update employee set enabled=? where employee_code=?";
 	static final String SQL_SELECT_EMPLOYEE_BY_EMPLOYEECODE="select * from employee where employee_code=?";
+	static final String SQL_DELETE_EMPLOYEE="delete from employee where employee_code=?";
+	static final String SQL_SELECT_EMPLOYEE_BY_FIRST_NAME="select * from employee where first_name=?";
 }

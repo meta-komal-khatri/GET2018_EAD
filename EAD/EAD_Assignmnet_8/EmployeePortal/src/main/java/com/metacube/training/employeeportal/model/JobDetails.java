@@ -22,18 +22,21 @@ public class JobDetails {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	/**
 	 * @return the employeeCode
 	 */
 	public int getEmployeeCode() {
 		return employeeCode;
 	}
+	
 	/**
 	 * @param employeeCode the employeeCode to set
 	 */
 	public void setEmployeeCode(int employeeCode) {
 		this.employeeCode = employeeCode;
 	}
+	
 	/**
 	 * @return the dateOfJoining
 	 */

@@ -29,22 +29,21 @@ public class EmployeeDaoJDBCImp implements EmployeeDao{
 
 	@Override
 	public boolean create(Employee employee) {
-		return jdbcTemplate.update(Query.SQL_INSERT_EMPLOYEE,employee.getFirstName()
+		return jdbcTemplate.update(Query.SQL_INSERT_EMPLOYEE,employee.getEmployeeCode(),employee.getFirstName()
 				,employee.getMiddleName(),employee.getLastName(),
-				employee.getDob(),employee.getGender(),employee.getContactNo(),employee.getEmailId())>0;
+				employee.getDob(),employee.getGender(),employee.getContactNo(),employee.getEmailId(),employee.getPassword())>0;
 	}
 
 	@Override
 	public boolean update(Employee employee) {
 		return jdbcTemplate.update(Query.SQL_UPDATE_EMPLOYEE,employee.getFirstName()
 				,employee.getMiddleName(),employee.getLastName(),
-				employee.getDob(),employee.getGender(),employee.getContactNo(),employee.getEmailId())>0;
+				employee.getDob(),employee.getGender(),employee.getContactNo(),employee.getEmailId(),employee.getEmployeeCode())>0;
 	}
 
 	
 	@Override
 	public boolean delete(Employee t) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
@@ -54,6 +53,14 @@ public class EmployeeDaoJDBCImp implements EmployeeDao{
 	@Override
 	public Employee getEmployeeById(String employeeCode) {
 		return jdbcTemplate.queryForObject(Query.SQL_SELECT_EMPLOYEE_BY_EMPLOYEECODE,new Object[]{employeeCode}, new EmployeeMapper());
+	}
+	@Override
+	public boolean deleteEmployeeById(String employeeCode) {
+		return jdbcTemplate.update(Query.SQL_DELETE_EMPLOYEE,new Object[]{employeeCode})>0;
+	}
+	@Override
+	public List<Employee> getEmployeeByName(String firstName) {
+		return jdbcTemplate.query(Query.SQL_SELECT_EMPLOYEE_BY_FIRST_NAME,new Object[]{firstName},new EmployeeMapper());
 	}
 
 }

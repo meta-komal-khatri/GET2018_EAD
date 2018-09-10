@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Employee {
+	private int employeeId;
 	private String employeeCode;
 	private String firstName;
 	private String middleName;
@@ -122,6 +123,18 @@ public class Employee {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	/**
+	 * @return the employeeId
+	 */
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	/**
+	 * @param employeeId the employeeId to set
+	 */
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 	
 	

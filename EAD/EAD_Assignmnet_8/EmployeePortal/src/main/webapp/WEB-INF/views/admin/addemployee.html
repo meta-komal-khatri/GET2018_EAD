@@ -1,12 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<form th:object="${employee}" action="@{employee/add}" method="post">
+	
+	
+	<form th:object="${employee}" th:action="@{../employes}" method="post">
 		<table> 
+			<tr>
+				<td></td>
+				<td><input type="hidden" th:field="*{employeeId}"></td>
+			</tr>
 			<tr>
 				<td>Employee Code</td>
 				<td><input type="text" th:field="*{employeeCode}">
@@ -24,7 +30,15 @@
 					Middle Name
 				</td>
 				<td>
-					<input type="text" th:field="*{middle_name}">
+					<input type="text" th:field="*{middleName}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Last Name
+				</td>
+				<td>
+					<input type="text" th:field="*{lastName}">
 				</td>
 			</tr>
 			<tr>
@@ -32,7 +46,7 @@
 					Date Of Birth
 				</td>
 				<td>
-					<input type="text" th:field="dob">
+					<input type="date" th:field="*{dob}">
 				</td>
 			</tr>
 			<tr>
@@ -40,22 +54,43 @@
 					Gender
 				</td>
 				<td>
-					<input type="radio" name="dob">
+					<input type="radio" th:field="*{gender}" th:value="Male">Male
+					<input type="radio" th:field="*{gender}" th:value="Female">Female
 				</td>
+			</tr>
+			<tr>
+				<td>
+					Contact No
+				</td>
+				<td>
+					<input type="text" th:field="*{contactNo}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email Id
+				</td>
+				<td>
+					<input type="text" th:field="*{emailId}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Password
+				</td>
+				<td>
+					<input type="password" th:field="*{password}">
+				</td>
+			</tr>
+			<tr>
+				<td><button type="submit" class="btn btn-primary">Save</button></td>
 			</tr>
 		</table>
 		
 	</form>
+</body>
+</html>
 	
 	
 	
-	<ul>
-  <li th:each="radioValue: ${singleSelectAllValues}">
-    <input type="radio" 
-        th:field="*{radioButtonSelectedValue}"
-        th:value="${radioValue}" />
-    <label 
-        th:for="${#ids.prev('radioButtonSelectedValue')}"
-        th:text="${radioValue}"></label>
-  </li>
-</ul>
+	

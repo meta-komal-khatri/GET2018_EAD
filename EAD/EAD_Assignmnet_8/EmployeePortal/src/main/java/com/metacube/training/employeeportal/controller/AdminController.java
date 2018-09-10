@@ -141,9 +141,12 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/employes",method=RequestMethod.POST)
-	public String addEmployee(@ModelAttribute("employee") Employee employee,Model model){
-		if(employee!=null){
+	public String addEmployee(@ModelAttribute("employee") Employee employee){
+		if(employee!=null && employee.getEmployeeId()==0){
 			employeeService.createEmployee(employee);
+		}
+		else{
+			employeeService.updateEmployee(employee);
 		}
 		return "redirect:/admin/employes";
 	}
@@ -151,15 +154,52 @@ public class AdminController {
 	
 	@RequestMapping(value="employes",method=RequestMethod.GET)
 	public String showAllemployes(Model model){
-		model.addAttribute("employee", employeeService.getAll());
+		
+		model.addAttribute("employes", employeeService.getAll());
+		
 		return "admin/employes";
 	}
 	
+	
 	@RequestMapping(value="employee/edit",method=RequestMethod.GET)
-	public String editEmployee(@RequestParam("employee_code") String employeeCode,Model model){
-		employeeService.getEmployeeByEmployeeCode(employeeCode);
-		return "";
+	public String editEmployee(@RequestParam("employeeCode") String employeeCode,Model model){
+		Employee employee=employeeService.getEmployeeByEmployeeCode(employeeCode);
+		model.addAttribute("employee" ,employee);
+		System.out.println("asd1111");
+		return "admin/addemployee";
 	}
+	
+	@RequestMapping(value="employee/delete",method=RequestMethod.GET)
+	public String deleteEmployee(@RequestParam("employeeCode") String employeeCode,Model model){
+		employeeService.deleteEmployeeByEmployeeCode(employeeCode);
+		return "redirect:/admin/employes";
+	}
+	
+	
+	/****************Search Employee*********************/
+	
+	
+	@RequestMapping(value="employee/search",method=RequestMethod.GET)
+	public String serachEmployee(Model model){
+		model.addAttribute("employee",new Employee());
+		return "admin/searchemployee";
+	}
+	
+	
+	@RequestMapping(value="search",method=RequestMethod.POST)
+	public String search(@ModelAttribute("employee") Employee employee,Model model){
+		model.addAttribute("employes",employeeService.selectEmployeeByName(employee.getFirstName()));
+		return "admin/employes";
+	}
+	
+	
+	/***************************LogOut***********************/
+	
+	@RequestMapping(value="logout",method=RequestMethod.GET)
+	public String logOut(Model model){
+		return "admin/login";
+	}
+	
 	/*@RequestMapping(value="/addskill" , method = RequestMethod.GET)
 	public ModelAndView addSkill1(){
 		return new ModelAndView("admin/addskill");
