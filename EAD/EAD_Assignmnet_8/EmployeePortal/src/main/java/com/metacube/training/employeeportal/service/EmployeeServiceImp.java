@@ -48,4 +48,15 @@ public class EmployeeServiceImp implements EmployeeService {
 		return employeeDao.getEmployeeByName(firstName);
 	}
 
+	@Override
+	public Employee login(String employeeCode, String password) {
+		Employee employee=getEmployeeByEmployeeCode(employeeCode);
+		if(employee.getPassword().equals(password)){
+			return employee;
+		}
+		else{
+			return null;
+		}
+	}
+
 }

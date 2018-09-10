@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{./profile/edit}" th:object="${employee}" method="post">
+	
+	<table class="table table-striped">
+            <tr>
+                <td><input type="text" th:field="${employee.employeeCode}"></td>
+            </tr>
+            <tr>
+                <td th:text="${employee.firstName}">Description</td>
+            </tr>
+            <tr>
+                <td th:text="${employee.middleName}">Start Date</td>
+             
+             </tr>
+             <tr>
+                <td th:text="${employee.lastName}">End Date</td>
+             </tr>
+             <tr>
+                <td th:text="${employee.dob}">End Date</td>
+             </tr>
+             <tr>
+                <td th:text="${employee.gender}">End Date</td>
+              </tr>
+              <tr>
+                <td th:text="${employee.contactNo}">End Date</td>
+              </tr>
+              <tr>
+                <td th:text="${employee.emailId}">End Date</td>
+              </tr>
+              <tr>
+                <td><a th:href="${'profile/edit?employeeCode=' + employee.employeeCode}" class="btn btn-default">Edit</a></td>
+               </tr>
+          
+ 
+           
+        </table>
+        </form>
+</body>
+</html>

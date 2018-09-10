@@ -10,4 +10,5 @@ public interface EmployeeDao extends BaseDao<Employee> {
 	public boolean deleteEmployeeById(String employeeCode);
 	public List<Employee> getEmployeeByName(String firstName);
 	
+	
 }
