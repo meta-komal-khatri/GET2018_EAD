@@ -1,0 +1,10 @@
+server:
+  servlet:
+    context-path: /EmployeePortalBoot
+spring:
+  datasource: 
+    url: jdbc:mysql://localhost/employeeportal
+    username: root
+    password: 1234
+    driver-class-name : com.mysql.jdbc.Driver
+    type: org.apache.tomcat.jdbc.pool.DataSource
