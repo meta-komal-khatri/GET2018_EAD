@@ -30,6 +30,8 @@ import com.metacube.training.employeeportalhibernate.model.Projects;
 
 
 
+import com.metacube.training.employeeportalhibernate.model.Skill;
+
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 
@@ -38,7 +40,7 @@ import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.metacube.training")
 @EnableTransactionManagement
-@PropertySource("classpath:resources/database.properties")
+@PropertySource("classpath:database.properties")
 public class MVCWebConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -99,9 +101,10 @@ public class MVCWebConfig implements WebMvcConfigurer {
 	    props.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 
 	    factoryBean.setHibernateProperties(props);
-	    factoryBean.setAnnotatedClasses(Projects.class);
-	    factoryBean.setAnnotatedClasses(Employee.class);
-	    factoryBean.setAnnotatedClasses(Job.class);
+	    factoryBean.setAnnotatedClasses(Projects.class, Employee.class, Job.class, Skill.class);
+	    //factoryBean.setAnnotatedClasses(Employee.class);
+	    //factoryBean.setAnnotatedClasses(Job.class);
+	    //factoryBean.setAnnotatedClasses(Skill.class);
 	    return factoryBean;
 	  }
 

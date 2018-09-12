@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,6 +14,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metacube.training.employeeportalhibernate.mappers.JobMapper;
 import com.metacube.training.employeeportalhibernate.model.Employee;
@@ -19,16 +22,14 @@ import com.metacube.training.employeeportalhibernate.model.Job;
 import com.metacube.training.employeeportalhibernate.query.Query;
 
 @Repository
+@Transactional
 public class JobDaoJDBCImp implements JobDao {
-	private JdbcTemplate jdbcTemplate;
+	
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	/*@Autowired
-	public JobDaoJDBCImp(DataSource dataSource){
-		jdbcTemplate=new JdbcTemplate(dataSource);
-	}*/
+	
 
 	@Override
 	public List<Job> getAll() {
@@ -36,7 +37,7 @@ public class JobDaoJDBCImp implements JobDao {
 		List list=criteria.list();
 
 		return list;
-		//return jdbcTemplate.query(Query.SQL_GET_ALL_JOBS,new JobMapper());
+		
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class JobDaoJDBCImp implements JobDao {
 
 		return true;
 
-		//return jdbcTemplate.update(Query.SQL_INSERT_JOBS,job.getTitle())>0;
+		
 	}
 
 	@Override

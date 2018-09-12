@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metacube.training.employeeportalhibernate.model.Employee;
 import com.metacube.training.employeeportalhibernate.model.Job;
@@ -22,6 +25,7 @@ import com.metacube.training.employeeportalhibernate.query.Query;
 import com.metacube.training.employeeportalhibernate.mappers.ProjectMapper;
 
 @Repository
+@Transactional
 public class ProjectDaoJDBCImp implements ProjectDao {
 
 	private JdbcTemplate jdbcTemplate;
@@ -30,44 +34,37 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 	private SessionFactory sessionFactory;
 
 
-
-	/*@Autowired
-	public ProjectDaoJDBCImp(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}*/
-
-
 	@Override
 	public List<Projects> getAll() {
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Projects.class);
 		List list=criteria.list();
 		return list;
-		//return jdbcTemplate.query(Query.SQL_GET_ALL, new ProjectMapper());
+		
 	}
 
 	@Override
-	public boolean create(Projects project) {	
+	public boolean create(Projects project_master) {	
 
 
+	
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 
 		try{
 			tx = session.beginTransaction();
-			session.save(project);
+			session.save(project_master);
 			tx.commit();
 		}catch(HibernateException e){
 			if(tx!=null)
 				tx.rollback();
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			return false;
 		}finally{
 			session.close();
 		}
 
 		return true;
-		//return jdbcTemplate.update(Query.SQL_INSERT_PROJECT, project.getDescription(), project.getStartDate(),
-		//project.getEndDate()) > 0;
+		
 
 	}
 
@@ -78,7 +75,7 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 		int updatedEntities=0;
 		try{
 			transaction=session.beginTransaction();	
-			String hqlUpdates="update Projects set description=:description,startDate=:startDate,endDate=endDate where id=:id";
+			String hqlUpdates="update Projects set description=:description,startDate=:startDate,endDate=:endDate where id=:id";
 			updatedEntities=session.createQuery(hqlUpdates)
 					.setString("description",project.getDescription())
 					.setDate("startDate",project.getStartDate())
@@ -95,8 +92,7 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 			session.close();
 		}
 		return updatedEntities>0;
-		//return jdbcTemplate.update(Query.SQL_UPDATE_PROJECT,project.getDescription(),project.getStartDate(),project.getEndDate(),project.getId())>0;
-
+		
 	}
 
 	@Override
@@ -118,13 +114,31 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 					return null;
 				}
 		
-		//return (Projects) jdbcTemplate.queryForObject(Query.SQL_FIND_PROJECT,new Object[]{id},new ProjectMapper());
+	
 	}
 
 
 	@Override
 	public boolean deleteProjectById(int id) {
-		return jdbcTemplate.update(Query.SQL_DELETE_PROJECT,new Object[]{id})>0;
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+
+		try{
+			tx = session.beginTransaction();
+			
+			Projects project = (Projects) session.createCriteria(Projects.class)
+	                 .add(Restrictions.eq("id", id)).uniqueResult();
+	        session.delete(project);
+			tx.commit();
+		}catch(HibernateException e){
+			if(tx!=null)
+				tx.rollback();
+			return false;
+		}finally{
+			session.close();
+		}
+
+		return true;
 	}
 
 }
