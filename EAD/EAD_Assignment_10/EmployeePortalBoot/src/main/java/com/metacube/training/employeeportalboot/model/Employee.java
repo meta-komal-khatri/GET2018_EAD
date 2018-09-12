@@ -2,10 +2,15 @@ package com.metacube.training.employeeportalboot.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class Employee {
 	private int employeeId;
+	
+	
 	private String employeeCode;
 	private String firstName;
 	private String middleName;

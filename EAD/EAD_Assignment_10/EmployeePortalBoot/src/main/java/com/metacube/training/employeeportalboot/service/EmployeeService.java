@@ -15,5 +15,5 @@ public interface EmployeeService {
 	Employee getEmployeeByEmployeeCode(String employeeCode);
 	boolean deleteEmployeeByEmployeeCode(String employeeCode);
 	List<Employee> selectEmployeeByName(String firstName);
-	
+	Employee login(String employeeCode,String password);
 }

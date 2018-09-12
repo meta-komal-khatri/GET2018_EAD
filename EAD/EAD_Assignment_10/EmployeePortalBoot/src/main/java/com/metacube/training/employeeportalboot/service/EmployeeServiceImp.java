@@ -47,5 +47,16 @@ public class EmployeeServiceImp implements EmployeeService {
 	public List<Employee> selectEmployeeByName(String firstName) {
 		return employeeDao.getEmployeeByName(firstName);
 	}
+	
+	@Override
+	public Employee login(String employeeCode, String password) {
+		Employee employee=getEmployeeByEmployeeCode(employeeCode);
+		if(employee.getPassword().equals(password)){
+			return employee;
+		}
+		else{
+			return null;
+		}
+	}
 
 }

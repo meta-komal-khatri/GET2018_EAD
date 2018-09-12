@@ -45,7 +45,12 @@ public class AdminController {
 		return new ModelAndView("admin/dashboard","username",username);
 	}
 	
-	/*Project*/
+	
+	
+	
+	/*****************************Project**********************************/
+	
+	
 	@RequestMapping(value="/project/add" , method = RequestMethod.GET)
 	public ModelAndView addProject(Model model){
 		model.addAttribute("project",new Projects());
@@ -200,24 +205,4 @@ public class AdminController {
 		return "admin/login";
 	}
 	
-	/*@RequestMapping(value="/addskill" , method = RequestMethod.GET)
-	public ModelAndView addSkill1(){
-		return new ModelAndView("admin/addskill");
-	}
-	
-	@RequestMapping(value="/addskill" , method = RequestMethod.POST)
-	public ModelAndView addProject1(){
-		return new ModelAndView("admin/dashboard");
-	}
-	
-	
-	@RequestMapping(value="/addjob" , method = RequestMethod.GET)
-	public ModelAndView addJob(){
-		return new ModelAndView("admin/addjob");
-	}
-	
-	@RequestMapping(value="/addjob" , method = RequestMethod.POST)
-	public ModelAndView addJob1(){
-		return new ModelAndView("admin/dashboard");
-	}*/
 }
