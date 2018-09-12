@@ -2,13 +2,25 @@ package com.metacube.training.employeeportalboot.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class JobDetails {
 	private int id;
-	private int employeeCode;
+	
+	@NotEmpty
+	private String employeeCode;
+	
+	@NotNull
 	private Date dateOfJoining;
+	@NotNull
 	private int totalExperience;
+	@NotNull
 	private int reportingManger;
+	@NotNull
 	private int teamLead;
+	@NotNull
 	private int currentProjectId;
 	/**
 	 * @return the id
@@ -26,14 +38,14 @@ public class JobDetails {
 	/**
 	 * @return the employeeCode
 	 */
-	public int getEmployeeCode() {
+	public String getEmployeeCode() {
 		return employeeCode;
 	}
 	
 	/**
 	 * @param employeeCode the employeeCode to set
 	 */
-	public void setEmployeeCode(int employeeCode) {
+	public void setEmployeeCode(String employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 	

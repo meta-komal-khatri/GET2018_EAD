@@ -2,14 +2,21 @@ package com.metacube.training.employeeportalboot.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Projects {
 	private int id;
+	
+	@NotEmpty
 	private String description;
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@NotNull
 	private Date startDate;
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@NotNull
 	private Date endDate;
 	/**
 	 * @return the id

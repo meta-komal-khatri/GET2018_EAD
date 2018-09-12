@@ -2,31 +2,61 @@ package com.metacube.training.employeeportalboot.model;
 
 import java.util.Date;
 
+
+
+
+
+
+
+
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+
+
+
+
+
 public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int employeeId;
-	
-	
+	@NotEmpty
 	private String employeeCode;
+	@NotEmpty
 	private String firstName;
+	@NotEmpty
 	private String middleName;
+	@NotEmpty
 	private String lastName;
+	
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@NotNull
 	private Date dob;
+	@NotEmpty
 	private String gender;
+	@NotNull
 	private int contactNo;
+	@NotEmpty
 	private String emailId;
+	@NotEmpty
 	private String password;
+	
 	/**
 	 * @return the employeeCode
 	 */
 	public String getEmployeeCode() {
 		return employeeCode;
 	}
+	
 	/**
 	 * @param employeeCode the employeeCode to set
 	 */

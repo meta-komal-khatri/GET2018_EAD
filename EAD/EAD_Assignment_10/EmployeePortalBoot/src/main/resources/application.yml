@@ -1,7 +1,6 @@
 server:
   servlet:
     context-path: /EmployeePortalBoot
-  port: 8005
 spring:
   datasource: 
     url: jdbc:mysql://localhost/employeeportal

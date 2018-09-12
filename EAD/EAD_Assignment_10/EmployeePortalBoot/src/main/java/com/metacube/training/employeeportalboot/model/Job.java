@@ -1,7 +1,11 @@
 package com.metacube.training.employeeportalboot.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Job {
 	private int id;
+	
+	@NotEmpty
 	private String title;
 	/**
 	 * @return the id

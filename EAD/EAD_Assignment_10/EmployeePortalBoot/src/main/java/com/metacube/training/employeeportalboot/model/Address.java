@@ -1,12 +1,28 @@
 package com.metacube.training.employeeportalboot.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Address {
 	private int id;
-	private int employee_code;
+	
+	@NotEmpty
+	private String employee_code;
+	
+	@NotEmpty
 	private String addressLine1;
+	
+	@NotEmpty
 	private String addressLine2;
+	
+	@NotEmpty
 	private String city;
+	
+	@NotEmpty
 	private String state;
+	
+	@NotNull
 	private int pincode;
 	/**
 	 * @return the id
@@ -23,13 +39,13 @@ public class Address {
 	/**
 	 * @return the employee_code
 	 */
-	public int getEmployee_code() {
+	public String getEmployee_code() {
 		return employee_code;
 	}
 	/**
 	 * @param employee_code the employee_code to set
 	 */
-	public void setEmployee_code(int employee_code) {
+	public void setEmployee_code(String employee_code) {
 		this.employee_code = employee_code;
 	}
 	/**

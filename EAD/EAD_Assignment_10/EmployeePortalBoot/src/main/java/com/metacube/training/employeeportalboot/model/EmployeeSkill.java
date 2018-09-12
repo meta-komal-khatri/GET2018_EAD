@@ -1,8 +1,16 @@
 package com.metacube.training.employeeportalboot.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class EmployeeSkill {
 	private int id;
+	
+	@NotEmpty
 	private int employeeCode;
+	
+	@NotNull
 	private int skillId;
 	/**
 	 * @return the id
