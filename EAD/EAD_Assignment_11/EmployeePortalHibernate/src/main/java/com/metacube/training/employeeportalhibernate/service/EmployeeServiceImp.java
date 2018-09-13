@@ -2,12 +2,19 @@ package com.metacube.training.employeeportalhibernate.service;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metacube.training.employeeportalhibernate.dao.EmployeeDao;
 import com.metacube.training.employeeportalhibernate.model.Employee;
 @Service
+@Transactional
 public class EmployeeServiceImp implements EmployeeService {
 
 	@Autowired
@@ -19,6 +26,7 @@ public class EmployeeServiceImp implements EmployeeService {
 	}
 
 	@Override
+
 	public boolean updateEmployee(Employee employee) {
 		return employeeDao.update(employee);
 	}

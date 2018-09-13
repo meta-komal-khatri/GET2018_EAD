@@ -2,7 +2,12 @@ package com.metacube.training.employeeportalhibernate.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
+
+
 
 
 
@@ -16,7 +21,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.metacube.training.employeeportalhibernate.mappers.SkillMapper;
+
+
+
 import com.metacube.training.employeeportalhibernate.model.Projects;
 import com.metacube.training.employeeportalhibernate.model.Skill;
 import com.metacube.training.employeeportalhibernate.query.Query;
@@ -36,29 +43,21 @@ public class SkillDaoJDBCImpl implements SkillDao{
 	
 	@Override
 	public List<Skill> getAll() {
-		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Skill.class);
-		List list=criteria.list();
-		return list;
+		Session session = sessionFactory.openSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Skill> criteria = builder.createQuery(Skill.class);
+		Root<Skill> projectRoot = criteria.from(Skill.class);
+		criteria.select(projectRoot);
+		List<Skill> skill = session.createQuery(criteria).getResultList();
+		session.close();
+		return skill;
 	}
 
 	@Override
 	public boolean create(Skill skill) {
 		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-
-		try{
-			tx = session.beginTransaction();
-			session.save(skill);
-			tx.commit();
-		}catch(HibernateException e){
-			if(tx!=null)
-				tx.rollback();
-			e.printStackTrace();
-			return false;
-		}finally{
-			session.close();
-		}
-
+		int a=(Integer) session.save(skill);
+		session.close();
 		return true;
 	}
 

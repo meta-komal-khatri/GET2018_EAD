@@ -86,7 +86,23 @@
     	<version>5.2.9.Final</version>
 	</dependency>
 	
-	
+	<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+     </dependency>
+	<!-- IN MEMORY Database and JDBC Driver -->
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.7</version>
+        </dependency>
+	 <!-- Spring-Data-JPA -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.jpa.version}</version>
+        </dependency>
 	<!-- Hibernate library dependecy end -->
 	
 	<dependency>

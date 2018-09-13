@@ -2,7 +2,16 @@ package com.metacube.training.employeeportalhibernate.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
+
+
+
+
 
 
 
@@ -22,7 +31,7 @@ import com.metacube.training.employeeportalhibernate.model.Employee;
 import com.metacube.training.employeeportalhibernate.model.Job;
 import com.metacube.training.employeeportalhibernate.model.Projects;
 import com.metacube.training.employeeportalhibernate.query.Query;
-import com.metacube.training.employeeportalhibernate.mappers.ProjectMapper;
+
 
 @Repository
 @Transactional
@@ -36,33 +45,23 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 
 	@Override
 	public List<Projects> getAll() {
-		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Projects.class);
-		List list=criteria.list();
-		return list;
+		Session session = sessionFactory.openSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Projects> criteria = builder.createQuery(Projects.class);
+		Root<Projects> projectRoot = criteria.from(Projects.class);
+		criteria.select(projectRoot);
+		List<Projects> project = session.createQuery(criteria).getResultList();
+		session.close();
+		return project;
 		
 	}
 
 	@Override
 	public boolean create(Projects project_master) {	
-
-
 	
 		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-
-		try{
-			tx = session.beginTransaction();
-			session.save(project_master);
-			tx.commit();
-		}catch(HibernateException e){
-			if(tx!=null)
-				tx.rollback();
-			System.out.println(e.getMessage());
-			return false;
-		}finally{
-			session.close();
-		}
-
+		int a=(Integer) session.save(project_master);
+		session.close();
 		return true;
 		
 
@@ -71,27 +70,18 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 	@Override
 	public boolean update(Projects project) {
 		Session session = sessionFactory.openSession();
-		Transaction transaction=null;
-		int updatedEntities=0;
-		try{
-			transaction=session.beginTransaction();	
-			String hqlUpdates="update Projects set description=:description,startDate=:startDate,endDate=:endDate where id=:id";
-			updatedEntities=session.createQuery(hqlUpdates)
-					.setString("description",project.getDescription())
-					.setDate("startDate",project.getStartDate())
-					.setDate("endDate",project.getEndDate())
-					.setInteger("id",project.getId())
-					.executeUpdate();
-			transaction.commit();
-		}catch(HibernateException exception){
-			if(transaction!=null){
-				transaction.rollback();
-			}
-			throw new RuntimeException();
-		}finally{
-			session.close();
-		}
-		return updatedEntities>0;
+		Transaction transaction=session.beginTransaction();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaUpdate<Projects> criteria = builder.createCriteriaUpdate(Projects.class);
+		Root<Projects> projectRoot = criteria.from(Projects.class);
+		criteria.set(projectRoot.get("description"), project.getDescription()).where(builder.equal(projectRoot.get("id"), project.getId()));
+		criteria.set(projectRoot.get("startDate"), project.getStartDate()).where(builder.equal(projectRoot.get("id"), project.getId()));
+		criteria.set(projectRoot.get("endDate"), project.getEndDate()).where(builder.equal(projectRoot.get("id"), project.getId()));
+		session.createQuery(criteria).executeUpdate();
+		transaction.commit();
+		session.close();
+		return true;
+		
 		
 	}
 
@@ -104,15 +94,15 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 
 	@Override
 	public Projects getProjectById(int id) {
-		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Projects.class)
-				.add(Restrictions.eq("id", id));
-				Object result=criteria.uniqueResult();
-				if(result!=null){
-					return (Projects) result;
-				}
-				else{
-					return null;
-				}
+		Session session = sessionFactory.openSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Projects> criteria = builder.createQuery(Projects.class);
+		Root<Projects> projectRoot = criteria.from(Projects.class);
+		criteria.select(projectRoot);
+		criteria.where(builder.equal(projectRoot.get("id"), id));
+		Projects project = session.createQuery(criteria).getSingleResult();
+		session.close();
+		return project;
 		
 	
 	}
@@ -120,25 +110,15 @@ public class ProjectDaoJDBCImp implements ProjectDao {
 
 	@Override
 	public boolean deleteProjectById(int id) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-
-		try{
-			tx = session.beginTransaction();
-			
-			Projects project = (Projects) session.createCriteria(Projects.class)
-	                 .add(Restrictions.eq("id", id)).uniqueResult();
-	        session.delete(project);
-			tx.commit();
-		}catch(HibernateException e){
-			if(tx!=null)
-				tx.rollback();
-			return false;
-		}finally{
-			session.close();
-		}
-
-		return true;
+Session session = sessionFactory.openSession();
+		
+		CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+		CriteriaDelete<Projects> criteriaDelete=criteriaBuilder.createCriteriaDelete(Projects.class);
+		Root<Projects> projectRoot=criteriaDelete.from(Projects.class);
+		criteriaDelete.where(criteriaBuilder.equal(projectRoot.get("id"),id));
+		int update=session.createQuery(criteriaDelete).executeUpdate();
+		session.close();
+		return update>0;
 	}
 
 }
