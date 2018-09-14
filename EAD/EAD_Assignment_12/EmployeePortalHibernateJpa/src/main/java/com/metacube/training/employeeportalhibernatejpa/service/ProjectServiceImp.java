@@ -57,7 +57,7 @@ public class ProjectServiceImp implements ProjectService{
 
 	@Override
 	public boolean deleteProjectById(int id) {
-	return projectRepository.deleteProjectsByid(id);
+	return projectRepository.deleteProjectsByid(id)>0;
 		
 	}
 

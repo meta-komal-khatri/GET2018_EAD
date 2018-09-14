@@ -16,6 +16,6 @@ public interface ProjectRepository extends JpaRepository<Projects, Long>{
 	@Modifying
 	@Transactional
 	@Query("delete from Projects  where id = ?1")
-	public void deleteProjectsByid(int id);
+	public int deleteProjectsByid(int id);
 	//public boolean deleteProjectsByid(int id);
 }

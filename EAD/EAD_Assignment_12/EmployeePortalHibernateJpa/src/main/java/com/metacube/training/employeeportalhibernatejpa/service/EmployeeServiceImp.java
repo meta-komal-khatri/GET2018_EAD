@@ -52,6 +52,7 @@ public class EmployeeServiceImp implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public boolean updateEmployeeStatus(String employeeCode, String status) {
 		employeeRepository.updateEmployeeStatusByemployeeCode(status, employeeCode);
 		return true;
@@ -67,8 +68,8 @@ public class EmployeeServiceImp implements EmployeeService {
 
 	@Override
 	public boolean deleteEmployeeByEmployeeCode(String employeeCode) {
-		employeeRepository.deleteEmployeeByemployeeCode(employeeCode);
-		return true;
+		return employeeRepository.deleteEmployeeByemployeeCode(employeeCode)>0;
+		
 		
 	}
 

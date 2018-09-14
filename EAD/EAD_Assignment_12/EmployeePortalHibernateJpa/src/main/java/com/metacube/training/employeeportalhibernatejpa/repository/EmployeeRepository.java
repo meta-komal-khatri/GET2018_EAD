@@ -15,21 +15,20 @@ import com.metacube.training.employeeportalhibernatejpa.model.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	
-	/*@Modifying
-	@Query("update Employee set employeeCode = :employeeCode ,firstName = :firstName ,middleName=:middleName ,lastName=:lastName,\n"
-			+ "dob=:dob ,gender:=gender,")*/
+	
 	public Employee findEmployeeByEmployeeCode(String employeeCode);
 	
 	@Modifying
-	@Transactional
 	@Query("update Employee set status=?1 where employeeCode=?2")
 	public void updateEmployeeStatusByemployeeCode(String status,String employeeCode);
+	
+	
+	
 	public List<Employee> findEmployeeByfirstName(String firstName);
 	
 	
 	@Modifying
-	@Transactional
 	@Query("delete from Employee  where employeeCode = ?1")
-	public void deleteEmployeeByemployeeCode(String employeeCode);
+	public int deleteEmployeeByemployeeCode(String employeeCode);
 	}
  
