@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +26,9 @@ public class JobDetails {
 	private int id;
 	
 	@Column(name="employee_code")
-	private int employeeCode;
+	@ManyToOne
+	@JoinColumn(name="employeeCode")
+	private Employee employeeCodeObj;
 	
 	@DateTimeFormat(pattern= "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -34,14 +38,22 @@ public class JobDetails {
 	@Column(name="total_experience")
 	private int totalExperience;
 	
+	@ManyToOne
+	@JoinColumn(name="employeeCode")
 	@Column(name="reporting_manager")
-	private int reportingManger;
+	private Employee employeeManagerObj;
 	
+	
+	@ManyToOne
+	@JoinColumn(name="employeeCode")
 	@Column(name="team_lead")
-	private int teamLead;
+	private Employee employeeLeadObj;
 	
+	
+	@ManyToOne
+	@JoinColumn(name="id")
 	@Column(name="current_project_id")
-	private int currentProjectId;
+	private Projects project;
 	/**
 	 * @return the id
 	 */
@@ -55,19 +67,6 @@ public class JobDetails {
 		this.id = id;
 	}
 	
-	/**
-	 * @return the employeeCode
-	 */
-	public int getEmployeeCode() {
-		return employeeCode;
-	}
-	
-	/**
-	 * @param employeeCode the employeeCode to set
-	 */
-	public void setEmployeeCode(int employeeCode) {
-		this.employeeCode = employeeCode;
-	}
 	
 	/**
 	 * @return the dateOfJoining
@@ -93,40 +92,5 @@ public class JobDetails {
 	public void setTotalExperience(int totalExperience) {
 		this.totalExperience = totalExperience;
 	}
-	/**
-	 * @return the reportingManger
-	 */
-	public int getReportingManger() {
-		return reportingManger;
-	}
-	/**
-	 * @param reportingManger the reportingManger to set
-	 */
-	public void setReportingManger(int reportingManger) {
-		this.reportingManger = reportingManger;
-	}
-	/**
-	 * @return the teamLead
-	 */
-	public int getTeamLead() {
-		return teamLead;
-	}
-	/**
-	 * @param teamLead the teamLead to set
-	 */
-	public void setTeamLead(int teamLead) {
-		this.teamLead = teamLead;
-	}
-	/**
-	 * @return the currentProjectId
-	 */
-	public int getCurrentProjectId() {
-		return currentProjectId;
-	}
-	/**
-	 * @param currentProjectId the currentProjectId to set
-	 */
-	public void setCurrentProjectId(int currentProjectId) {
-		this.currentProjectId = currentProjectId;
-	}
+
 }

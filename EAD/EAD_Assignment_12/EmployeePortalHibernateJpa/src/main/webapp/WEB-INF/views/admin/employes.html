@@ -29,7 +29,7 @@
                 <td th:text="${employee.contactNo}">End Date</td>
                 <td th:text="${employee.emailId}">End Date</td>
                 <td><a th:href="${'employee/edit?employeeCode=' + employee.employeeCode}" class="btn btn-default">Edit</a></td>
- 
+ 				<td><a th:href="${'employee/assign?employeeCode=' + employee.employeeCode}" class="btn btn-default">Assign Project</a></td>
             </tr>
         </table>
     </div>

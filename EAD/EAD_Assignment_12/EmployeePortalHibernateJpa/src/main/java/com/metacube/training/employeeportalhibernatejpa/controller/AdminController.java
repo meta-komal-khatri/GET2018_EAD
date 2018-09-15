@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metacube.training.employeeportalhibernatejpa.model.Employee;
 import com.metacube.training.employeeportalhibernatejpa.model.Job;
+import com.metacube.training.employeeportalhibernatejpa.model.JobDetails;
 import com.metacube.training.employeeportalhibernatejpa.model.Projects;
 import com.metacube.training.employeeportalhibernatejpa.model.Skill;
 import com.metacube.training.employeeportalhibernatejpa.service.EmployeeService;
@@ -165,7 +166,7 @@ public class AdminController {
 	public String editEmployee(@RequestParam("employeeCode") String employeeCode,Model model){
 		Employee employee=employeeService.getEmployeeByEmployeeCode(employeeCode);
 		model.addAttribute("employee" ,employee);
-		System.out.println("asd1111");
+		
 		return "admin/addemployee";
 	}
 	
@@ -175,6 +176,16 @@ public class AdminController {
 		return "redirect:/admin/employes";
 	}
 	
+	
+	/***********************Assign Project******************************/
+	
+	@RequestMapping(value="employee/assign",method=RequestMethod.GET)
+	public String assignProject(@RequestParam("employeeCode") String employeeCode,Model model){
+		JobDetails details=new JobDetails();
+		details.setEmployeeCode(employeeCode);
+		model.addAttribute("jobDetail",details);
+		return "admin/assignproject";
+	}
 	
 	/****************Search Employee*********************/
 	
