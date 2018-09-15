@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -24,12 +25,15 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import com.metacube.config.SecurityConfig;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.metacube.training")
 @EnableTransactionManagement
 @PropertySource("classpath:database.properties")
 @EnableJpaRepositories("com.metacube.training.employeeportalhibernatejpa.repository")
+@Import({ SecurityConfig.class })
 public class MVCWebConfig implements WebMvcConfigurer {
 
 	@Autowired
