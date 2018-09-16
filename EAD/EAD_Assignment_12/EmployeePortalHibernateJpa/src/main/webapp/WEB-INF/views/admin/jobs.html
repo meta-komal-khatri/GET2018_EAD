@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(job)}">
+        <h2>All Jobs</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="job:${job}">
+            	<td th:text="${job.id}"></td>
+            	<td th:text="${job.title}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
