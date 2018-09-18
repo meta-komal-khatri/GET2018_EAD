@@ -46,6 +46,11 @@ public class AdminController {
 		return new ModelAndView("admin/dashboard","username",username);
 	}
 	
+	
+	@RequestMapping(value="/security" ,method=RequestMethod.GET)
+	public String loginSecurity(){
+		return "admin/dashboard";
+	}
 	/*Project*/
 	@RequestMapping(value="/project/add" , method = RequestMethod.GET)
 	public ModelAndView addProject(Model model){
