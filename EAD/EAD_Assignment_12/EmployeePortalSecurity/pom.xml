@@ -80,6 +80,9 @@
 
 
 		<!-- Spring Security -->
+		
+
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -91,6 +94,9 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.0.6.RELEASE</version>
 		</dependency>
+		 
+		
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
