@@ -19,22 +19,27 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	 public ModelAndView login(){
-		 return new ModelAndView("employee/login");
-	}
-	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(@RequestParam("username") String employeeCode,@RequestParam("password") String password,Model model){
-		if(employeeService.login(employeeCode, password)!=null){
-			model.addAttribute("employee",employeeService.login(employeeCode, password));
-			return "employee/dashboard";
-		}
-		else{
-			model.addAttribute("message", "Invalid user or password");
-			return "employee/login";
-		}
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	 public ModelAndView login(){
+//		 return new ModelAndView("employee/login");
+//	}
+//	
+//	@RequestMapping(value="/login",method=RequestMethod.POST)
+//	public String login(@RequestParam("username") String employeeCode,@RequestParam("password") String password,Model model){
+//		if(employeeService.login(employeeCode, password)!=null){
+//			model.addAttribute("employee",employeeService.login(employeeCode, password));
+//			return "employee/dashboard";
+//		}
+//		else{
+//			model.addAttribute("message", "Invalid user or password");
+//			return "employee/login";
+//		}
+//		
+//	}
+	@RequestMapping(value="/dashboard" ,method=RequestMethod.GET)
+	public String login(Model model){
 		
+		return "employee/dashboard";
 	}
 	
 	@RequestMapping(value="/profile",method=RequestMethod.GET)

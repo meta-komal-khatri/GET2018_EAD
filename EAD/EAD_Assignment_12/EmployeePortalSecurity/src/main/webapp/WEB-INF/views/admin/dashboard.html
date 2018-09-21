@@ -16,7 +16,11 @@
 			<a th:href="@{employes}">Show All Employes</a><br>
 			<a th:href="@{employee/add}">Add Employee Master</a><br>
 			<a th:href="@{employee/search}">Search Employee</a><br>
-			 <a th:href="@{/adminLogout}">LogOut</a><br>
+			<form th:action="@{/Logout}" method="post">
+				<button type="submit" class="btn btn-primary">Logout</button>
+			</form>
+			
+			 <!-- <a th:href="@{login}">LogOut</a><br> -->
 			<!-- <a href="<c:url value='/logout' />" > Logout</a> -->
 		</tr>
 	</table>

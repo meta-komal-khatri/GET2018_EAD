@@ -9,9 +9,11 @@
 
 	<table>
 		<tr>
-			<a th:href="${'profile?id=' + employee.employeeCode}" class="btn btn-default">Profile</a><br>
-			<a th:href="@{search}">Search</a><br>
-			<a th:href="@{logout}">LogOut</a><br>
+			<!-- <a th:href="${'profile?id=' + employee.employeeCode}" class="btn btn-default">Profile</a><br>
+			 --><a th:href="@{search}">Search</a><br>
+			<form th:action="@{/Logout}" method="post">
+			<button type="submit" class="btn btn-primary">Logout</button>
+			</form>
 		</tr>
 	</table>
 </body>

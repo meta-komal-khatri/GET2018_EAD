@@ -35,16 +35,16 @@ public class AdminController {
 	@Autowired
 	EmployeeService employeeService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	 public ModelAndView login(){
-		 return new ModelAndView("admin/login");
-	}
-	
-	
-	@RequestMapping(value="/login" , method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("username") String username,@RequestParam("password") String password){
-		return new ModelAndView("admin/dashboard","username",username);
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	 public ModelAndView login(){
+//		 return new ModelAndView("admin/login");
+//	}
+//	
+//	
+//	@RequestMapping(value="/login" , method = RequestMethod.POST)
+//	public ModelAndView login(@RequestParam("username") String username,@RequestParam("password") String password){
+//		return new ModelAndView("admin/dashboard","username",username);
+//	}
 	
 	
 	@RequestMapping(value="/security" ,method=RequestMethod.GET)
