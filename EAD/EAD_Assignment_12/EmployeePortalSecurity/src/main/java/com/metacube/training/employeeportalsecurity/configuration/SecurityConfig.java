@@ -33,22 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		loginPage("/login").
 		loginProcessingUrl("/Login").
 		defaultSuccessUrl("/default").	
+		failureUrl("/error").
 		and().logout().logoutUrl("/Logout")//logout configuration
 		.logoutSuccessUrl("/login")	;
-		//		http.authorizeRequests()
-		//		.antMatchers("/admin/security**").access("hasRole('ROLE_ADMIN')")
-		//		//.antMatchers("/dba").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
-		//		.and().formLogin();
-		//		http
-		//		.formLogin()
-		//		.loginPage("/login.html") 
-		//		.loginProcessingUrl("/admin/login")
-		//		.defaultSuccessUrl("/security",true) 
-		//		.failureUrl("/login.html?error=true");
-
-		//		http.authorizeRequests()
-		//		.antMatchers("admin/security**").access("hasRole('ROLE_ADMIN')")
-		//		//.antMatchers("/dba").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
-		//		.and().formLogin();
+	
 	}
 }
