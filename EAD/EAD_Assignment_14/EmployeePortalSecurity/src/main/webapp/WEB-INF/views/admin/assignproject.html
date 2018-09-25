@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${jobDetail}" th:action="@{admin/jobDetails}" method="post">
+	
+		<table>
+			<tr>
+				<td><input type="text" th:field="*{employeeCode}" disabled="disabled"></td>
+			</tr>
+			
+			<tr>
+				<td><input type="date" th:field="*{dateOfJoining}"></td>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{totalExperience}"></td>
+				
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{reportingManager}"></td>
+				
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{teamLead}"></td>
+				
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{peojectId}"></td>
+				
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
