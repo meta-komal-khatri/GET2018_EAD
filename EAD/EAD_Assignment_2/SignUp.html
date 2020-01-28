@@ -1,0 +1,72 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="SignUp.css">
+	<script src="SignUp.js">		
+		
+	</script>
+	</head>
+	<body>
+		<form action="LogIn.html" id="signUpForm" onsubmit="return signUpFormValidation()">
+			<table id="header" width="100%">
+				<tr>
+					<td align=left>
+						<img src="down.png" height="50">
+					</td>
+					<td align=right>
+						<a href="Home.html">Home</a>
+						<a href="">About</a>
+						<a href="">Product</a>
+						<a href="">Gallery</a>
+						<a href="ContactUs.html">Contact</a>
+						<a href="LogIn.html">LogIn</a>
+						<a href="SignUp.html">SignUp</a>
+					</td>
+				</tr>
+			</table>
+			<h1 align="center">SignUp</h1>
+			<table align=center id="body">
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" name="f_name" id="txt_f_name" onkeyup="firstNameValidation()"></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" name="l_name" id="txt_l_name" onkeyup="lastNameValidation()"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email" id="txt_email" onkeyup="emailValidation()"></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password" id="txt_password" onkeyup="passwordValidation()"></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input type="password" name="confirm_password" id="txt_c_password" onkeyup="confirmPasswordValidation()"></td>
+				</tr>
+				<tr>
+					<td>Contact Number</td>
+					<td><input type="text" name="contact_number" id="txt_c_number" onkeyup="contactNumberValidation()"></td>
+				</tr>
+				<tr>
+					<td>Company/Institute</td>
+					<td>
+						<select>
+							<option>Metacube Pvt. Ltd.</option>
+							<option>Tata Consultancy Services</option>
+							<option>Wipro</option>
+							<option>IBM</option>
+							<option>Persistent</option>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align=center>
+						<input type="submit" value="Sign Up" name="btn_signUp">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+	
