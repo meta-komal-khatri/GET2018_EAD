@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(skill)}">
+        <h2>All projects</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="skill : ${skill}">
+            	<td th:text="${skill.id}"></td>
+            	<td th:text="${skill.name}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
