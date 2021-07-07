@@ -1,0 +1,18 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table>
+		<tr>
+			<a th:href="${'profile?id=' + employee.employeeCode}" class="btn btn-default">Profile</a><br>
+			<a th:href="@{search}">Search</a><br>
+			<a th:href="@{logout}">LogOut</a><br>
+		</tr>
+	</table>
+</body>
+</html>

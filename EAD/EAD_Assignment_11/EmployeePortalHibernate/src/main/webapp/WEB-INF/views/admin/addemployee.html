@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	
+	<form th:object="${employee}" th:action="@{../employes}" method="post">
+		<table> 
+			<tr>
+				<td></td>
+				<td><input type="hidden" th:field="*{employeeId}"></td>
+			</tr>
+			<tr>
+				<td>Employee Code</td>
+				<td><input type="text" th:field="*{employeeCode}">
+			</tr>
+			<tr>
+				<td>
+					First Name
+				</td>
+				<td>
+					<input type="text" th:field="*{firstName}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Middle Name
+				</td>
+				<td>
+					<input type="text" th:field="*{middleName}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Last Name
+				</td>
+				<td>
+					<input type="text" th:field="*{lastName}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Date Of Birth
+				</td>
+				<td>
+					<input type="date" th:field="*{dob}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Gender
+				</td>
+				<td>
+					<input type="radio" th:field="*{gender}" th:value="Male">Male
+					<input type="radio" th:field="*{gender}" th:value="Female">Female
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Contact No
+				</td>
+				<td>
+					<input type="text" th:field="*{contactNo}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email Id
+				</td>
+				<td>
+					<input type="text" th:field="*{emailId}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Password
+				</td>
+				<td>
+					<input type="password" th:field="*{password}">
+				</td>
+			</tr>
+			<tr>
+				<td><button type="submit" class="btn btn-primary">Save</button></td>
+			</tr>
+		</table>
+		
+	</form>
+</body>
+</html>
+	
+	
+	
+	
